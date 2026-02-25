@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>球反彈磚頭遊戲</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game-container">
+    <div id="score-display">分數：<span id="score">0</span></div>
+    <canvas id="gameCanvas" width="480" height="600"></canvas>
+    <div id="overlay" class="hidden">
+      <div id="overlay-message"></div>
+      <div id="overlay-score"></div>
+      <button id="restart-btn">重新開始</button>
+    </div>
+    <div id="controls">
+      <button id="start-btn">開始</button>
+    </div>
+  </div>
+  <script src="src/gameState.js"></script>
+  <script src="src/renderer.js"></script>
+  <script src="src/game.js"></script>
+</body>
+</html>
