@@ -31,7 +31,10 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] **繁體中文**：spec.md、plan.md、tasks.md 均以繁體中文撰寫
+- [ ] **不過度設計**：設計採最簡方案；若有額外複雜度，已填寫 Complexity Tracking
+- [ ] **TDD**：所有功能均有對應測試，且測試在實作前建立
+- [ ] **網站類型確認**（若為 web 專案）：交付物為可部署至 GitHub Pages 的靜態前端網站
 
 ## Project Structure
 
