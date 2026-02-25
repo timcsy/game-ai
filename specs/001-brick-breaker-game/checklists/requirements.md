@@ -1,36 +1,36 @@
-# Specification Quality Checklist: Simple Ball-Bouncing Brick Breaker Game
+# 規格品質檢查清單：簡單球反彈磚頭遊戲
 
-**Purpose**: Validate specification completeness and quality before proceeding to planning
-**Created**: 2026-02-25
-**Feature**: [spec.md](../spec.md)
+**用途**：在進入規劃階段前，驗證規格的完整性與品質
+**建立日期**：2026-02-25
+**功能**：[spec.md](../spec.md)
 
-## Content Quality
+## 內容品質
 
-- [x] No implementation details (languages, frameworks, APIs)
-- [x] Focused on user value and business needs
-- [x] Written for non-technical stakeholders
-- [x] All mandatory sections completed
+- [x] 無實作細節（程式語言、框架、API）
+- [x] 聚焦於使用者價值與業務需求
+- [x] 以非技術利害關係人為閱讀對象撰寫
+- [x] 所有必要章節均已完成
 
-## Requirement Completeness
+## 需求完整性
 
-- [x] No [NEEDS CLARIFICATION] markers remain
-- [x] Requirements are testable and unambiguous
-- [x] Success criteria are measurable
-- [x] Success criteria are technology-agnostic (no implementation details)
-- [x] All acceptance scenarios are defined
-- [x] Edge cases are identified
-- [x] Scope is clearly bounded
-- [x] Dependencies and assumptions identified
+- [x] 無殘留的 [NEEDS CLARIFICATION] 標記
+- [x] 需求可測試且無歧義
+- [x] 成功標準可量測
+- [x] 成功標準與技術無關（無實作細節）
+- [x] 所有驗收情境均已定義
+- [x] 邊界情況已識別
+- [x] 範疇明確界定
+- [x] 依賴關係與假設已記錄
 
-## Feature Readiness
+## 功能就緒度
 
-- [x] All functional requirements have clear acceptance criteria
-- [x] User scenarios cover primary flows
-- [x] Feature meets measurable outcomes defined in Success Criteria
-- [x] No implementation details leak into specification
+- [x] 所有功能需求均有明確的驗收標準
+- [x] 使用者情境涵蓋主要流程
+- [x] 功能符合成功標準中定義的可量測成果
+- [x] 規格中無實作細節洩漏
 
-## Notes
+## 備註
 
-- All items pass. Specification is ready for `/speckit.plan`.
-- Assumptions section documents scope boundaries (single-player, browser-based, no sound, no leaderboard).
-- Edge cases covering ball corner collisions, paddle-edge angles, and resize behaviour are documented.
+- 所有項目均通過驗證。規格已符合憲法核心原則一（繁體中文優先），可進入下一階段 `/speckit.plan`。
+- 假設章節記錄了範疇邊界（單人遊戲、瀏覽器執行、無音效、無排行榜）。
+- 邊界情況涵蓋球碰角反彈、擋板邊緣角度及遊戲中視窗縮放等情境。

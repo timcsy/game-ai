@@ -1,111 +1,111 @@
-# Feature Specification: Simple Ball-Bouncing Brick Breaker Game
+# 功能規格：簡單球反彈磚頭遊戲
 
-**Feature Branch**: `001-brick-breaker-game`  
-**Created**: 2026-02-25  
-**Status**: Draft  
-**Input**: User description: "我想要寫一個簡單的球反彈設計磚頭遊戲" (I want to create a simple ball-bouncing brick game)
+**功能分支**：`001-brick-breaker-game`  
+**建立日期**：2026-02-25  
+**狀態**：草稿  
+**輸入**：使用者描述：「我想要寫一個簡單的球反彈設計磚頭遊戲」
 
-## User Scenarios & Testing *(mandatory)*
+## 使用者情境與測試 *(必要)*
 
-### User Story 1 - Play a Complete Game Round (Priority: P1)
+### 使用者故事 1 — 完成一場完整的遊戲（優先級：P1）
 
-A player opens the game and plays a round of brick-breaking. They move the paddle left and right to keep the ball in play, bounce the ball into the wall of bricks, and try to clear all bricks before the ball falls below the paddle.
+玩家開啟遊戲，開始一局打磚頭。玩家左右移動擋板以接住球，讓球反彈打向上方的磚頭，目標是在球落出底部之前清除所有磚頭。
 
-**Why this priority**: This is the core gameplay loop. Without it, the feature has no value. Every other story depends on it.
+**優先級原因**：這是核心遊戲循環。缺少此故事，整個功能毫無價值，其他故事皆依賴於此。
 
-**Independent Test**: Can be fully tested by launching the game, moving the paddle with keyboard or mouse, bouncing the ball, and observing bricks disappearing on hit. Delivers the complete playable game experience.
+**獨立測試說明**：啟動遊戲後，透過鍵盤或滑鼠移動擋板、讓球反彈，觀察磚頭被擊中後消失，即可完整驗證此故事，並交付完整可玩的遊戲體驗。
 
-**Acceptance Scenarios**:
+**驗收情境**：
 
-1. **Given** the game has started, **When** the ball contacts a brick, **Then** the brick is removed and the ball reflects off the brick's surface.
-2. **Given** the player moves the paddle under the falling ball, **When** the ball hits the paddle, **Then** the ball bounces upward and continues play.
-3. **Given** the ball reaches the left, right, or top wall, **When** contact is detected, **Then** the ball reflects off the wall at the correct angle.
-4. **Given** all bricks have been cleared, **When** the last brick is destroyed, **Then** the game displays a win message and stops.
-5. **Given** the ball falls below the bottom of the screen, **When** it passes the paddle without being hit, **Then** the player loses a life or the game ends.
-
----
-
-### User Story 2 - Start and Restart the Game (Priority: P2)
-
-A player lands on the game screen and can start a new game. After the game ends (win or loss), they can restart without refreshing the page.
-
-**Why this priority**: Essential for usability. Players need a clear entry point and the ability to replay. Without this, the game is only playable once per page load.
-
-**Independent Test**: Can be fully tested by clicking Start, verifying the game initialises with bricks and ball, then losing the game and clicking Restart to verify the game resets cleanly.
-
-**Acceptance Scenarios**:
-
-1. **Given** the game has loaded, **When** the player presses the Start button, **Then** the ball begins moving and the game is active.
-2. **Given** the game has ended (win or loss), **When** the player presses the Restart button, **Then** all bricks are restored, the ball resets to its starting position, and the score resets to zero.
-3. **Given** the game is in progress, **When** the player presses a Reset action, **Then** the game returns to the initial state.
+1. **前提**：遊戲已開始，**當**球碰觸到磚頭時，**則**磚頭被移除，且球依據碰撞面反彈。
+2. **前提**：玩家將擋板移到球落下位置的正下方，**當**球碰到擋板時，**則**球向上反彈並繼續移動。
+3. **前提**：球到達左牆、右牆或上牆，**當**偵測到碰撞時，**則**球以正確角度反彈。
+4. **前提**：所有磚頭已清除，**當**最後一塊磚頭被消滅時，**則**遊戲顯示勝利訊息並停止。
+5. **前提**：球落到畫面底部，**當**球未被擋板接住而穿過底邊時，**則**玩家失去生命或遊戲結束。
 
 ---
 
-### User Story 3 - Track Score During Play (Priority: P3)
+### 使用者故事 2 — 開始與重新開始遊戲（優先級：P2）
 
-A player can see their current score update in real time as they destroy bricks. At game end, the final score is displayed clearly.
+玩家進入遊戲畫面後可以開始一局新遊戲。遊戲結束（勝利或失敗）後，玩家可以不重新整理頁面即重新開始。
 
-**Why this priority**: Scoring adds motivation and replayability. It is not required for the core loop but significantly improves the player experience.
+**優先級原因**：對於可用性而言不可或缺。玩家需要明確的進入點與重玩能力，缺少此功能則每次遊玩都需要重新整理頁面。
 
-**Independent Test**: Can be fully tested by destroying bricks and confirming the displayed score increases by the correct amount per brick. After a game-over or win, confirming the final score is shown.
+**獨立測試說明**：點擊「開始」後確認遊戲以磚頭與球的初始狀態啟動，輸掉遊戲後點擊「重新開始」確認遊戲乾淨地重置，即可完整驗證此故事。
 
-**Acceptance Scenarios**:
+**驗收情境**：
 
-1. **Given** the game is in progress, **When** a brick is destroyed, **Then** the score increases by the brick's point value and the updated score is visible on screen.
-2. **Given** the game has ended, **When** the end screen appears, **Then** the player's final score is clearly displayed.
-3. **Given** the player restarts the game, **When** the new round begins, **Then** the score resets to zero.
+1. **前提**：遊戲已載入，**當**玩家按下「開始」按鈕時，**則**球開始移動，遊戲進入進行中狀態。
+2. **前提**：遊戲已結束（勝利或失敗），**當**玩家按下「重新開始」按鈕時，**則**所有磚頭恢復、球回到初始位置、分數歸零。
+3. **前提**：遊戲進行中，**當**玩家執行重置操作時，**則**遊戲回到初始狀態。
 
 ---
 
-### Edge Cases
+### 使用者故事 3 — 遊戲中追蹤分數（優先級：P3）
 
-- What happens when the ball hits the very corner where two walls meet simultaneously?
-- What happens when the ball hits the edge of the paddle instead of the centre — does the reflection angle change?
-- What happens when multiple bricks are hit in the same frame (e.g., ball passes through a narrow gap)?
-- How does the game behave if the browser window is resized mid-game?
-- What happens if the player does not move the paddle at all — does the ball start moving automatically or wait for input?
+玩家在遊戲過程中可即時看到分數隨磚頭被消滅而更新。遊戲結束時，最終分數清楚呈現。
 
-## Requirements *(mandatory)*
+**優先級原因**：計分為遊戲增添動力與重玩性，並非核心循環必要條件，但能顯著提升玩家體驗。
 
-### Functional Requirements
+**獨立測試說明**：消滅磚頭後確認畫面上顯示的分數依正確數值增加；遊戲結束後確認最終分數顯示於結束畫面，即可完整驗證此故事。
 
-- **FR-001**: The game MUST display a rectangular play area containing a grid of bricks at the top, a movable paddle at the bottom, and a ball.
-- **FR-002**: The ball MUST move continuously once the game starts, bouncing off the top wall, left wall, right wall, and the paddle.
-- **FR-003**: The player MUST be able to move the paddle horizontally using keyboard arrow keys or by moving the mouse/pointer within the play area.
-- **FR-004**: The paddle MUST be constrained within the horizontal boundaries of the play area and MUST NOT move outside them.
-- **FR-005**: When the ball contacts a brick, the brick MUST be removed from the play area and the ball MUST reflect off the surface.
-- **FR-006**: The game MUST track and display the player's current score, increasing it each time a brick is destroyed.
-- **FR-007**: The game MUST end with a loss condition when the ball passes below the bottom edge of the play area.
-- **FR-008**: The game MUST end with a win condition when all bricks have been destroyed.
-- **FR-009**: The game MUST display a clear end-game message (win or loss) and provide a Restart option.
-- **FR-010**: The game MUST allow the player to start a new game from the initial state, resetting the ball position, bricks, and score.
-- **FR-011**: The ball's reflection angle off the paddle MUST vary based on where on the paddle the ball makes contact, giving the player directional control.
+**驗收情境**：
 
-### Key Entities
+1. **前提**：遊戲進行中，**當**一塊磚頭被消滅時，**則**分數依磚頭點數增加，且更新後的分數立即顯示於畫面。
+2. **前提**：遊戲已結束，**當**結束畫面出現時，**則**玩家的最終分數清楚顯示。
+3. **前提**：玩家重新開始遊戲，**當**新的一局開始時，**則**分數歸零。
 
-- **Ball**: The moving object that interacts with walls, paddle, and bricks. Key attributes: position, velocity (direction and speed).
-- **Paddle**: The player-controlled horizontal bar. Key attributes: position, width. Constrained to the horizontal axis.
-- **Brick**: A destructible rectangular block in the play area. Key attributes: position, hit state (intact or destroyed), point value.
-- **Game State**: The overall state of the session. Key attributes: active bricks, current score, lives remaining (or game-over flag), play status (not started / playing / won / lost).
+---
 
-## Success Criteria *(mandatory)*
+### 邊界情況
 
-### Measurable Outcomes
+- 球同時撞到兩面牆的交角時，反彈行為為何？
+- 球撞到擋板的邊緣而非中央時，反彈角度是否會改變？
+- 同一幀內多塊磚頭被擊中（例如球穿越狹窄縫隙）時，如何處理？
+- 遊戲進行中瀏覽器視窗大小改變時，遊戲行為為何？
+- 玩家完全不移動擋板時，球是自動開始移動，還是等待玩家輸入？
 
-- **SC-001**: A new player can understand how to play and start a round within 30 seconds of loading the game, without reading any instructions.
-- **SC-002**: All bricks in the play area respond to ball contact within the same visual frame — no brick remains visible after being hit.
-- **SC-003**: The ball moves smoothly without visible stuttering or freezing during normal gameplay.
-- **SC-004**: The score displayed on screen updates correctly and instantly every time a brick is destroyed, with zero incorrect values observed during a complete game round.
-- **SC-005**: Players can successfully restart and play a complete new round after a game-over or win without reloading the page.
-- **SC-006**: The paddle responds to player input with no perceptible delay, reaching any horizontal position within the play area when directed.
+## 需求 *(必要)*
 
-## Assumptions
+### 功能需求
 
-- The game is a single-player experience with no multiplayer or network features.
-- The game is played in a web browser (as this is a game-ai project targeting browser-based games).
-- The initial layout consists of a fixed grid of bricks (e.g., 5–8 rows × 8–12 columns); exact dimensions can be adjusted during planning.
-- The player has one life per round (losing the ball ends the game). Multiple lives can be considered as a scope extension.
-- Bricks all have equal point value in the base version; differentiated scoring (e.g., coloured bricks with different values) is a future enhancement.
-- No sound effects or music are required for the initial version; they are out of scope.
-- The game does not require saving progress, user accounts, or leaderboards in this version.
-- Ball speed is constant throughout a round at the base level; speed increases as a difficulty feature are out of scope for the initial version.
+- **FR-001**：遊戲 MUST 顯示一個矩形遊戲區域，上方有磚頭格陣、下方有可移動擋板、以及一顆球。
+- **FR-002**：遊戲開始後，球 MUST 持續移動，並能從上牆、左牆、右牆及擋板反彈。
+- **FR-003**：玩家 MUST 能夠使用鍵盤方向鍵或在遊戲區域內移動滑鼠／指標來水平移動擋板。
+- **FR-004**：擋板 MUST 被限制在遊戲區域的水平邊界內，MUST NOT 超出邊界。
+- **FR-005**：球碰觸磚頭時，磚頭 MUST 從遊戲區域移除，且球 MUST 依碰撞面反彈。
+- **FR-006**：遊戲 MUST 追蹤並顯示玩家的即時分數，每消滅一塊磚頭即增加對應分數。
+- **FR-007**：球穿越遊戲區域底部邊緣時，遊戲 MUST 以失敗狀態結束。
+- **FR-008**：所有磚頭均被消滅時，遊戲 MUST 以勝利狀態結束。
+- **FR-009**：遊戲 MUST 顯示明確的結束訊息（勝利或失敗），並提供「重新開始」選項。
+- **FR-010**：遊戲 MUST 允許玩家從初始狀態開始新一局，重置球的位置、磚頭與分數。
+- **FR-011**：球從擋板反彈的角度 MUST 依球碰觸擋板的位置而變化，讓玩家具有方向控制能力。
+
+### 關鍵實體
+
+- **球（Ball）**：在牆壁、擋板與磚頭之間移動的物件。關鍵屬性：位置、速度（方向與速率）。
+- **擋板（Paddle）**：玩家控制的水平長條。關鍵屬性：位置、寬度。僅限水平軸移動。
+- **磚頭（Brick）**：遊戲區域中可被摧毀的矩形方塊。關鍵屬性：位置、狀態（完好或已摧毀）、點數。
+- **遊戲狀態（Game State）**：遊戲階段的整體狀態。關鍵屬性：剩餘磚頭、目前分數、生命數（或結束旗標）、遊戲進行狀態（未開始／進行中／勝利／失敗）。
+
+## 成功標準 *(必要)*
+
+### 可量測的成果
+
+- **SC-001**：新玩家在無需閱讀任何說明的情況下，能在載入遊戲後 30 秒內理解遊玩方式並開始一局。
+- **SC-002**：遊戲區域內所有磚頭在同一畫面幀內回應球的碰觸，被擊中後不再出現於畫面。
+- **SC-003**：球在正常遊戲過程中移動流暢，無可見的卡頓或凍結。
+- **SC-004**：畫面上顯示的分數在每次消滅磚頭後立即正確更新，在完整一局中不出現任何錯誤數值。
+- **SC-005**：玩家在遊戲結束（勝利或失敗）後，可不重新載入頁面即成功重新開始並完成新的一局。
+- **SC-006**：擋板回應玩家輸入無明顯延遲，可在玩家指示下移動至遊戲區域內任意水平位置。
+
+## 假設
+
+- 本遊戲為單人體驗，不涉及多人連線或網路功能。
+- 遊戲在網頁瀏覽器中執行（本專案以瀏覽器遊戲為目標平台）。
+- 初始版面由固定格陣的磚頭組成（例如 5–8 列 × 8–12 行）；確切尺寸可於規劃階段調整。
+- 每局玩家擁有一條生命（球落出底部即結束遊戲）；多條生命可作為範疇擴充項目。
+- 初始版本所有磚頭點數相同；差異化計分（例如不同顏色磚頭有不同點數）為未來強化項目。
+- 初始版本不需要音效或音樂，此功能不在範疇內。
+- 本版本不需要儲存進度、使用者帳號或排行榜。
+- 初始版本球速固定；隨遊戲進行加速等難度功能不在本版本範疇內。
