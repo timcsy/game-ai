@@ -1,107 +1,71 @@
-# Implementation Plan: [FEATURE]
+# 實作計畫：簡單球反彈磚頭遊戲
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**分支**：`001-brick-breaker-game` | **日期**：2026-02-25 | **規格**：[spec.md](spec.md)
+**輸入**：功能規格來自 `/specs/001-brick-breaker-game/spec.md`
 
-**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/plan-template.md` for the execution workflow.
+## 摘要
 
-## Summary
-
-[Extract from feature spec: primary requirement + technical approach from research]
+實作一款可在瀏覽器執行的單人打磚頭遊戲，以 Vanilla HTML5 Canvas + JavaScript 為技術核心，不依賴任何外部框架，可直接部署至 GitHub Pages。遊戲包含球、擋板、磚頭陣列，支援鍵盤／滑鼠控制、分數計算、勝負判定與重新開始功能。所有遊戲邏輯以可測試的純函式設計，並以 Jest 進行單元測試。
 
 ## Technical Context
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
-
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [e.g., library/cli/web-service/mobile-app/compiler/desktop-app or NEEDS CLARIFICATION]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+**Language/Version**: HTML5 + CSS3 + JavaScript（ES2020）  
+**Primary Dependencies**: 無（Vanilla JS，零外部依賴）；開發期 Jest（測試用）  
+**Storage**: N/A（無資料持久化需求）  
+**Testing**: Jest + jsdom（單元測試純遊戲邏輯）  
+**Target Platform**: 現代瀏覽器（Chrome / Firefox / Safari / Edge）；GitHub Pages 靜態托管  
+**Project Type**: 靜態網頁遊戲（web game）  
+**Performance Goals**: 60 FPS 流暢遊戲畫面  
+**Constraints**: 離線可用；零後端依賴；可直接部署至 GitHub Pages  
+**Scale/Scope**: 單一頁面；磚頭陣列約 5–8 列 × 8–12 行；單人遊玩
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+*GATE：Phase 0 研究前必須通過。Phase 1 設計後重新確認。*
 
-- [ ] **繁體中文**：spec.md、plan.md、tasks.md 均以繁體中文撰寫
-- [ ] **不過度設計**：設計採最簡方案；若有額外複雜度，已填寫 Complexity Tracking
-- [ ] **TDD**：所有功能均有對應測試，且測試在實作前建立
-- [ ] **網站類型確認**（若為 web 專案）：交付物為可部署至 GitHub Pages 的靜態前端網站
+- [x] **繁體中文**：spec.md 以繁體中文撰寫；plan.md、tasks.md 亦將以繁體中文撰寫
+- [x] **不過度設計**：採 Vanilla JS + Canvas，無框架、無後端，符合 YAGNI；Complexity Tracking 無需填寫
+- [x] **TDD**：遊戲邏輯以純函式設計，Jest 測試將在實作前建立並確認失敗後才進行實作
+- [x] **網站類型確認**：交付物為靜態 HTML/CSS/JS，可直接部署至 GitHub Pages，無後端伺服器依賴
+
+*Phase 1 設計後複查結果：所有原則均符合，無違規。*
 
 ## Project Structure
 
-### Documentation (this feature)
+### Documentation（本功能）
 
 ```text
-specs/[###-feature]/
-├── plan.md              # This file (/speckit.plan command output)
-├── research.md          # Phase 0 output (/speckit.plan command)
-├── data-model.md        # Phase 1 output (/speckit.plan command)
-├── quickstart.md        # Phase 1 output (/speckit.plan command)
-├── contracts/           # Phase 1 output (/speckit.plan command)
-└── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
+specs/001-brick-breaker-game/
+├── plan.md              # 本檔案（/speckit.plan 輸出）
+├── research.md          # Phase 0 輸出（/speckit.plan）
+├── data-model.md        # Phase 1 輸出（/speckit.plan）
+├── quickstart.md        # Phase 1 輸出（/speckit.plan）
+├── contracts/           # Phase 1 輸出（/speckit.plan）
+│   └── game-api.md
+└── tasks.md             # Phase 2 輸出（/speckit.tasks，非本指令產生）
 ```
 
-### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
+### Source Code（儲存庫根目錄）
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
-
-tests/
-├── contract/
-├── integration/
-└── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
+/
+├── index.html           # 遊戲入口頁面，GitHub Pages 部署目標
+├── style.css            # 遊戲樣式
+├── .nojekyll            # 跳過 GitHub Pages Jekyll 處理
 ├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
+│   ├── gameState.js     # 純函式：遊戲狀態、物理更新、碰撞邏輯（可單元測試）
+│   ├── renderer.js      # Canvas 渲染層（依賴 Canvas Context）
+│   └── game.js          # 遊戲主控：組合 gameState + renderer，掌管迴圈
 └── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+    └── unit/
+        ├── gameState.test.js
+        └── collision.test.js
 ```
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+**Structure Decision**：採用靜態網頁單一專案結構。遊戲邏輯與渲染分離（`gameState.js` vs `renderer.js`），使核心邏輯可獨立進行單元測試，而無需瀏覽器環境或 Canvas mock。`index.html` 置於根目錄以配合 GitHub Pages 預設發布設定。
 
 ## Complexity Tracking
 
-> **Fill ONLY if Constitution Check has violations that must be justified**
+> **僅在 Constitution Check 有需說明的違規時填寫**
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+*無違規，此區塊保留空白。*
