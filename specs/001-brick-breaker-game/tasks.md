@@ -17,10 +17,10 @@
 
 **目的**：建立可執行遊戲與測試的基礎專案結構
 
-- [ ] T001 建立根目錄靜態檔案骨架：`index.html`（空白 Canvas 頁面）、`style.css`（空白）、`.nojekyll`（空檔案）
-- [ ] T002 初始化 npm 專案並設定 Jest + jsdom：`package.json`（含 `test` 與 `test:coverage` 指令）、`jest.config.js`（或 package.json 內的 `jest` 欄位，testEnvironment: jsdom）
-- [ ] T003 [P] 建立原始碼目錄骨架：`src/gameState.js`（匯出空函式佔位）、`src/renderer.js`（匯出空函式佔位）、`src/game.js`（空模組）
-- [ ] T004 [P] 建立測試目錄骨架：`tests/unit/gameState.test.js`（空測試檔）、`tests/unit/collision.test.js`（空測試檔）
+- [x] T001 建立根目錄靜態檔案骨架：`index.html`（空白 Canvas 頁面）、`style.css`（空白）、`.nojekyll`（空檔案）
+- [x] T002 初始化 npm 專案並設定 Jest + jsdom：`package.json`（含 `test` 與 `test:coverage` 指令）、`jest.config.js`（或 package.json 內的 `jest` 欄位，testEnvironment: jsdom）
+- [x] T003 [P] 建立原始碼目錄骨架：`src/gameState.js`（匯出空函式佔位）、`src/renderer.js`（匯出空函式佔位）、`src/game.js`（空模組）
+- [x] T004 [P] 建立測試目錄骨架：`tests/unit/gameState.test.js`（空測試檔）、`tests/unit/collision.test.js`（空測試檔）
 
 ---
 
@@ -30,9 +30,9 @@
 
 **⚠️ 重要**：此階段完成前，任何使用者故事均不可開始
 
-- [ ] T005 在 `src/gameState.js` 頂部宣告並匯出全域常數（`CANVAS_WIDTH=480`、`CANVAS_HEIGHT=600`、`BALL_RADIUS=8`、`BALL_SPEED=300`、`PADDLE_WIDTH=80`、`PADDLE_HEIGHT=12`、`PADDLE_SPEED=400`、`BRICK_ROWS=6`、`BRICK_COLS=10`、`BRICK_POINTS=10`）
-- [ ] T006 [P] 在 `index.html` 加入 `<canvas id="gameCanvas">` 元素（480×600）、分數顯示區域、「開始」與「重新開始」按鈕及遊戲結束覆蓋層的 HTML 結構
-- [ ] T007 [P] 在 `style.css` 實作遊戲畫布置中、按鈕樣式、遊戲結束覆蓋層樣式
+- [x] T005 在 `src/gameState.js` 頂部宣告並匯出全域常數（`CANVAS_WIDTH=480`、`CANVAS_HEIGHT=600`、`BALL_RADIUS=8`、`BALL_SPEED=300`、`PADDLE_WIDTH=80`、`PADDLE_HEIGHT=12`、`PADDLE_SPEED=400`、`BRICK_ROWS=6`、`BRICK_COLS=10`、`BRICK_POINTS=10`）
+- [x] T006 [P] 在 `index.html` 加入 `<canvas id="gameCanvas">` 元素（480×600）、分數顯示區域、「開始」與「重新開始」按鈕及遊戲結束覆蓋層的 HTML 結構
+- [x] T007 [P] 在 `style.css` 實作遊戲畫布置中、按鈕樣式、遊戲結束覆蓋層樣式
 
 **Checkpoint**：基礎就緒，可開始各使用者故事的實作
 
@@ -46,25 +46,25 @@
 
 ### US1 測試任務（TDD：先寫測試，確認失敗後才實作）
 
-- [ ] T008 [P] [US1] 在 `tests/unit/gameState.test.js` 撰寫 `createInitialState()` 的失敗測試：驗證初始 `status==='idle'`、`score===0`、所有磚頭 `alive===true`、球與擋板的初始位置與速度
-- [ ] T009 [P] [US1] 在 `tests/unit/gameState.test.js` 撰寫 `update()` 球位置更新的失敗測試：驗證球位置依 `vx * deltaTime`、`vy * deltaTime` 正確更新（contracts/game-api.md 第 4 點）
-- [ ] T010 [P] [US1] 在 `tests/unit/collision.test.js` 撰寫牆壁碰撞的失敗測試：驗證球觸左牆／右牆反轉 `vx`，觸上牆反轉 `vy`（contracts/game-api.md 第 5 點）
-- [ ] T011 [P] [US1] 在 `tests/unit/collision.test.js` 撰寫擋板碰撞的失敗測試：驗證球碰擋板後 `vy` 反轉且球不卡入擋板，並依碰觸位置調整 `vx`（contracts/game-api.md 第 6 點）
-- [ ] T012 [P] [US1] 在 `tests/unit/collision.test.js` 撰寫磚頭碰撞的失敗測試：驗證碰觸後磚頭 `alive===false`、分數增加 `BRICK_POINTS`，並以 AABB 深度比較反轉正確速度分量（contracts/game-api.md 第 7 點）
-- [ ] T013 [P] [US1] 在 `tests/unit/gameState.test.js` 撰寫勝負判定的失敗測試：球穿過底部時 `status==='lost'`；所有磚頭消滅時 `status==='won'`（contracts/game-api.md 第 8–9 點）
-- [ ] T014 [P] [US1] 在 `tests/unit/gameState.test.js` 撰寫 `movePaddle()` 與 `setPaddleX()` 的失敗測試：驗證左右移動、邊界 clamp 限制（contracts/game-api.md 第 10–11 點）
+- [x] T008 [P] [US1] 在 `tests/unit/gameState.test.js` 撰寫 `createInitialState()` 的失敗測試：驗證初始 `status==='idle'`、`score===0`、所有磚頭 `alive===true`、球與擋板的初始位置與速度
+- [x] T009 [P] [US1] 在 `tests/unit/gameState.test.js` 撰寫 `update()` 球位置更新的失敗測試：驗證球位置依 `vx * deltaTime`、`vy * deltaTime` 正確更新（contracts/game-api.md 第 4 點）
+- [x] T010 [P] [US1] 在 `tests/unit/collision.test.js` 撰寫牆壁碰撞的失敗測試：驗證球觸左牆／右牆反轉 `vx`，觸上牆反轉 `vy`（contracts/game-api.md 第 5 點）
+- [x] T011 [P] [US1] 在 `tests/unit/collision.test.js` 撰寫擋板碰撞的失敗測試：驗證球碰擋板後 `vy` 反轉且球不卡入擋板，並依碰觸位置調整 `vx`（contracts/game-api.md 第 6 點）
+- [x] T012 [P] [US1] 在 `tests/unit/collision.test.js` 撰寫磚頭碰撞的失敗測試：驗證碰觸後磚頭 `alive===false`、分數增加 `BRICK_POINTS`，並以 AABB 深度比較反轉正確速度分量（contracts/game-api.md 第 7 點）
+- [x] T013 [P] [US1] 在 `tests/unit/gameState.test.js` 撰寫勝負判定的失敗測試：球穿過底部時 `status==='lost'`；所有磚頭消滅時 `status==='won'`（contracts/game-api.md 第 8–9 點）
+- [x] T014 [P] [US1] 在 `tests/unit/gameState.test.js` 撰寫 `movePaddle()` 與 `setPaddleX()` 的失敗測試：驗證左右移動、邊界 clamp 限制（contracts/game-api.md 第 10–11 點）
 
 ### US1 實作任務
 
-- [ ] T015 [US1] 在 `src/gameState.js` 實作 `createInitialState()`：返回含初始球（擋板中央上方，速度向量以 `BALL_SPEED` 設定）、擋板（水平置中）、6×10 磚頭陣列（全部 `alive=true`，動態計算寬度）、`status='idle'`、`score=0` 的 GameState（data-model.md 磚頭佈局）
-- [ ] T016 [US1] 在 `src/gameState.js` 實作 `update(state, deltaTime)` 球位置更新：依 `vx * deltaTime`、`vy * deltaTime` 更新球座標（前置條件：`status==='playing'`，deltaTime 上限 0.05 秒）
-- [ ] T017 [US1] 在 `src/gameState.js` 的 `update()` 中實作牆壁碰撞邏輯：左右牆反轉 `vx`，上牆反轉 `vy`，下邊界觸發 `status='lost'`（research.md AABB 決策）
-- [ ] T018 [US1] 在 `src/gameState.js` 的 `update()` 中實作擋板碰撞邏輯：偵測球與擋板重疊，反轉 `vy`，依碰觸位置相對擋板中心的偏移比例調整 `vx`，修正球 Y 座標至擋板頂端外側防止卡入（FR-011）
-- [ ] T019 [US1] 在 `src/gameState.js` 的 `update()` 中實作磚頭碰撞邏輯：以 AABB 比較 X/Y 重疊深度決定反轉分量，同幀所有重疊磚頭一律設 `alive=false` 並累加分數，所有磚頭消滅時設 `status='won'`（research.md 碰撞偵測決策）
-- [ ] T020 [US1] 在 `src/gameState.js` 實作 `movePaddle(state, direction, deltaTime)` 與 `setPaddleX(state, x)`：含邊界 clamp（`0` 至 `CANVAS_WIDTH - paddle.width`）（contracts/game-api.md）
-- [ ] T021 [US1] 在 `src/renderer.js` 實作 `draw(state, ctx)` 函式：清除畫布、繪製磚頭（跳過 `alive===false`）、擋板、球（使用 Canvas 2D API）
-- [ ] T022 [US1] 在 `src/game.js` 實作 `requestAnimationFrame` 遊戲主迴圈：計算 `deltaTime`（上限 0.05 秒）、呼叫 `update(state, deltaTime)` 與 `draw(state, ctx)`（research.md rAF + Delta Time 決策）
-- [ ] T023 [US1] 在 `src/game.js` 實作鍵盤輸入（`ArrowLeft`／`ArrowRight` 方向鍵呼叫 `movePaddle`）與滑鼠輸入（`mousemove` 事件呼叫 `setPaddleX`）事件監聽（FR-003）
+- [x] T015 [US1] 在 `src/gameState.js` 實作 `createInitialState()`：返回含初始球（擋板中央上方，速度向量以 `BALL_SPEED` 設定）、擋板（水平置中）、6×10 磚頭陣列（全部 `alive=true`，動態計算寬度）、`status='idle'`、`score=0` 的 GameState（data-model.md 磚頭佈局）
+- [x] T016 [US1] 在 `src/gameState.js` 實作 `update(state, deltaTime)` 球位置更新：依 `vx * deltaTime`、`vy * deltaTime` 更新球座標（前置條件：`status==='playing'`，deltaTime 上限 0.05 秒）
+- [x] T017 [US1] 在 `src/gameState.js` 的 `update()` 中實作牆壁碰撞邏輯：左右牆反轉 `vx`，上牆反轉 `vy`，下邊界觸發 `status='lost'`（research.md AABB 決策）
+- [x] T018 [US1] 在 `src/gameState.js` 的 `update()` 中實作擋板碰撞邏輯：偵測球與擋板重疊，反轉 `vy`，依碰觸位置相對擋板中心的偏移比例調整 `vx`，修正球 Y 座標至擋板頂端外側防止卡入（FR-011）
+- [x] T019 [US1] 在 `src/gameState.js` 的 `update()` 中實作磚頭碰撞邏輯：以 AABB 比較 X/Y 重疊深度決定反轉分量，同幀所有重疊磚頭一律設 `alive=false` 並累加分數，所有磚頭消滅時設 `status='won'`（research.md 碰撞偵測決策）
+- [x] T020 [US1] 在 `src/gameState.js` 實作 `movePaddle(state, direction, deltaTime)` 與 `setPaddleX(state, x)`：含邊界 clamp（`0` 至 `CANVAS_WIDTH - paddle.width`）（contracts/game-api.md）
+- [x] T021 [US1] 在 `src/renderer.js` 實作 `draw(state, ctx)` 函式：清除畫布、繪製磚頭（跳過 `alive===false`）、擋板、球（使用 Canvas 2D API）
+- [x] T022 [US1] 在 `src/game.js` 實作 `requestAnimationFrame` 遊戲主迴圈：計算 `deltaTime`（上限 0.05 秒）、呼叫 `update(state, deltaTime)` 與 `draw(state, ctx)`（research.md rAF + Delta Time 決策）
+- [x] T023 [US1] 在 `src/game.js` 實作鍵盤輸入（`ArrowLeft`／`ArrowRight` 方向鍵呼叫 `movePaddle`）與滑鼠輸入（`mousemove` 事件呼叫 `setPaddleX`）事件監聽（FR-003）
 
 **Checkpoint**：此時使用者故事 1 應可獨立運作與測試（`npm test` 全數通過，瀏覽器可完整玩一局）
 
@@ -78,15 +78,15 @@
 
 ### US2 測試任務（TDD：先寫測試，確認失敗後才實作）
 
-- [ ] T024 [P] [US2] 在 `tests/unit/gameState.test.js` 撰寫 `startGame()` 的失敗測試：驗證 `status` 由 `'idle'` 轉為 `'playing'`，球速度向量有效（contracts/game-api.md 第 2 點）
-- [ ] T025 [P] [US2] 在 `tests/unit/gameState.test.js` 撰寫 `resetGame()` 的失敗測試：驗證任意 `status` 下呼叫後，`status==='idle'`、`score===0`、所有磚頭 `alive===true`、球與擋板回到初始位置（contracts/game-api.md 第 3 點）
+- [x] T024 [P] [US2] 在 `tests/unit/gameState.test.js` 撰寫 `startGame()` 的失敗測試：驗證 `status` 由 `'idle'` 轉為 `'playing'`，球速度向量有效（contracts/game-api.md 第 2 點）
+- [x] T025 [P] [US2] 在 `tests/unit/gameState.test.js` 撰寫 `resetGame()` 的失敗測試：驗證任意 `status` 下呼叫後，`status==='idle'`、`score===0`、所有磚頭 `alive===true`、球與擋板回到初始位置（contracts/game-api.md 第 3 點）
 
 ### US2 實作任務
 
-- [ ] T026 [US2] 在 `src/gameState.js` 實作 `startGame(state)`：將 `state.status` 由 `'idle'` 改為 `'playing'`，啟動球的初始速度向量（contracts/game-api.md）
-- [ ] T027 [US2] 在 `src/gameState.js` 實作 `resetGame(state)`：重設所有欄位至初始值（等效 `createInitialState()` 後覆蓋 state）（contracts/game-api.md）
-- [ ] T028 [US2] 在 `src/game.js` 加入「開始」按鈕事件監聽（呼叫 `startGame`）與「重新開始」按鈕事件監聽（呼叫 `resetGame`），並更新按鈕顯示狀態（spec.md US2 驗收情境）
-- [ ] T029 [US2] 在 `src/renderer.js` 實作遊戲結束覆蓋層渲染：`status==='won'` 顯示勝利訊息，`status==='lost'` 顯示失敗訊息，兩者均提示「重新開始」（FR-009）
+- [x] T026 [US2] 在 `src/gameState.js` 實作 `startGame(state)`：將 `state.status` 由 `'idle'` 改為 `'playing'`，啟動球的初始速度向量（contracts/game-api.md）
+- [x] T027 [US2] 在 `src/gameState.js` 實作 `resetGame(state)`：重設所有欄位至初始值（等效 `createInitialState()` 後覆蓋 state）（contracts/game-api.md）
+- [x] T028 [US2] 在 `src/game.js` 加入「開始」按鈕事件監聽（呼叫 `startGame`）與「重新開始」按鈕事件監聽（呼叫 `resetGame`），並更新按鈕顯示狀態（spec.md US2 驗收情境）
+- [x] T029 [US2] 在 `src/renderer.js` 實作遊戲結束覆蓋層渲染：`status==='won'` 顯示勝利訊息，`status==='lost'` 顯示失敗訊息，兩者均提示「重新開始」（FR-009）
 
 **Checkpoint**：此時使用者故事 1 與 2 均可獨立運作與測試
 
@@ -100,14 +100,14 @@
 
 ### US3 測試任務（TDD：先寫測試，確認失敗後才實作）
 
-- [ ] T030 [P] [US3] 在 `tests/unit/gameState.test.js` 補充 `update()` 分數追蹤的失敗測試：驗證磚頭被摧毀時 `state.score` 依 `brick.points` 正確增加（contracts/game-api.md 第 7 點）
-- [ ] T031 [P] [US3] 在 `tests/unit/gameState.test.js` 撰寫重新開始分數歸零的失敗測試：驗證 `resetGame()` 後 `score===0`（spec.md US3 驗收情境 3）
+- [x] T030 [P] [US3] 在 `tests/unit/gameState.test.js` 補充 `update()` 分數追蹤的失敗測試：驗證磚頭被摧毀時 `state.score` 依 `brick.points` 正確增加（contracts/game-api.md 第 7 點）
+- [x] T031 [P] [US3] 在 `tests/unit/gameState.test.js` 撰寫重新開始分數歸零的失敗測試：驗證 `resetGame()` 後 `score===0`（spec.md US3 驗收情境 3）
 
 ### US3 實作任務
 
-- [ ] T032 [US3] 確認 `src/gameState.js` 的 `update()` 在磚頭設為 `alive=false` 時同步將 `brick.points` 累加至 `state.score`（此邏輯應已在 T019 實作，補充測試覆蓋即可）
-- [ ] T033 [US3] 在 `src/renderer.js` 的 `draw()` 中實作即時分數 HUD：在 Canvas 頂部繪製「分數：X」文字，每幀依 `state.score` 更新（FR-006、SC-004）
-- [ ] T034 [US3] 在 `src/renderer.js` 的遊戲結束覆蓋層中加入最終分數顯示（`state.score`），確保勝利與失敗畫面均顯示（spec.md US3 驗收情境 2）
+- [x] T032 [US3] 確認 `src/gameState.js` 的 `update()` 在磚頭設為 `alive=false` 時同步將 `brick.points` 累加至 `state.score`（此邏輯應已在 T019 實作，補充測試覆蓋即可）
+- [x] T033 [US3] 在 `src/renderer.js` 的 `draw()` 中實作即時分數 HUD：在 Canvas 頂部繪製「分數：X」文字，每幀依 `state.score` 更新（FR-006、SC-004）
+- [x] T034 [US3] 在 `src/renderer.js` 的遊戲結束覆蓋層中加入最終分數顯示（`state.score`），確保勝利與失敗畫面均顯示（spec.md US3 驗收情境 2）
 
 **Checkpoint**：所有三個使用者故事均可獨立運作與測試
 
@@ -117,11 +117,11 @@
 
 **目的**：驗證整體遊戲體驗，確認部署就緒
 
-- [ ] T035 [P] 執行 `npm test` 確認所有單元測試通過（`tests/unit/gameState.test.js` 與 `tests/unit/collision.test.js`）
-- [ ] T036 [P] 執行 `npm run test:coverage` 確認核心邏輯（`src/gameState.js`）測試覆蓋率達標
-- [ ] T037 依 `quickstart.md` 在瀏覽器手動驗證完整遊戲流程（SC-001 至 SC-006 全數驗證）
-- [ ] T038 [P] 確認 `.nojekyll` 存在於根目錄，並驗證 `index.html` 置於根目錄符合 GitHub Pages 部署設定（research.md 部署決策）
-- [ ] T039 [P] 程式碼整理：確認 `src/gameState.js` 不依賴任何瀏覽器 API（`window`、`document`、Canvas），確保 Node.js（Jest）環境可直接執行
+- [x] T035 [P] 執行 `npm test` 確認所有單元測試通過（`tests/unit/gameState.test.js` 與 `tests/unit/collision.test.js`）
+- [x] T036 [P] 執行 `npm run test:coverage` 確認核心邏輯（`src/gameState.js`）測試覆蓋率達標
+- [x] T037 依 `quickstart.md` 在瀏覽器手動驗證完整遊戲流程（SC-001 至 SC-006 全數驗證）
+- [x] T038 [P] 確認 `.nojekyll` 存在於根目錄，並驗證 `index.html` 置於根目錄符合 GitHub Pages 部署設定（research.md 部署決策）
+- [x] T039 [P] 程式碼整理：確認 `src/gameState.js` 不依賴任何瀏覽器 API（`window`、`document`、Canvas），確保 Node.js（Jest）環境可直接執行
 
 ---
 
